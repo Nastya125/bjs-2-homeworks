@@ -23,11 +23,13 @@ function getArrayParams(arr) {
       }
       
       avg = sum / array.length; 
-
+      avg = avg.toFixed(2)
+      
+      return {min: min, max: max, avg: avg };
     }
     
 
-              return {min: min, max: max, avg: avg };
+   
                
 
             
