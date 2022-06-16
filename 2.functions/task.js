@@ -16,14 +16,14 @@ function getArrayParams(arr) {
       };
     };
 
-      let array = arr
+     
       sum = 0;
-      for (let i = 0; i < array.length; i++ ){ 
-        sum += array[i];
+      for (let i = 0; i < arr.length; i++ ){ 
+        sum += arr[i];
       }
       
-      avg = sum / array.length; 
-      avg = avg.toFixed(2)
+      avg = (sum / arr.length).toFixed(2); 
+      avg = Number(avg)
       
       return {min: min, max: max, avg: avg };
     }
