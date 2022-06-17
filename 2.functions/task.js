@@ -53,12 +53,12 @@ function makeWork(arrOfArr, func) {
     for (let i = 0; i < la; i++) {
       let a = func(arrOfArr[i])
 
-        if (a > max){
+        if (a > max) {
           max = a;
         }
     }
   
-    return max;
+  return max;
 }
 
 
@@ -77,12 +77,10 @@ function worker2(arr) {
  
       if(arr[i] > max) {
         max = arr[i]
-      };
-      
+      };  
     }
 
-  diff = Math.abs(max - min);
+  return Math.abs(max - min);
 
-  return diff;
 }
 
