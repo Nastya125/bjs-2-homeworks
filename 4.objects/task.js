@@ -11,34 +11,36 @@ let student4 = new Student("Alenka", "female", 10);
 
 
 Student.prototype.setSubject = function (subjectName) {
-  return this.subject = subjectName;
+  this.subject = subjectName;
 }
 
 
 
 Student.prototype.addMark = function (mark) {
   if(this.marks === undefined){ 
-    return this.marks = [mark];
+    this.marks = [mark];
   } else {
-    return this.marks.push(mark);
+    this.marks.push(mark);
 }
 }
 
 Student.prototype.addMarks = function (...marks) {
-
-    return this.marks.push(...marks);
-
+  if(this.marks === undefined){
+    this.marks = [...marks];
+  } else {
+    this.marks.push(...marks);
+}
 }
 
 Student.prototype.getAverage = function (){
-  return this.avg = this.marks.reduce((a, b) => (a + b)) / this.marks.length;
+  return this.marks.reduce((a, b) => (a + b)) / this.marks.length;
   
 }
 
 Student.prototype.exclude = function (reason) {
   delete this.subject;
   delete this.marks; 
-  return this.excluded = reason;
+  this.excluded = reason;
 }
 
 
