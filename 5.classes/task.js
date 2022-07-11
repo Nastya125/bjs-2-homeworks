@@ -65,17 +65,95 @@ class DetectiveBook extends Book{
     }
 }
 
+// задача 2
 
-const picknick = new FantasticBook(
-    "Аркадий и Борис Стругацкие",
-    "Пикник на обочине",
-    1972,
-    168
-  );
-  
-  console.log(picknick.author); //"Аркадий и Борис Стругацкие"
-  picknick.state = 10;
-  console.log(picknick.state); //10
-  picknick.fix();
-  console.log(picknick.state); //15
+
+
+
+class Library extends PrintEditionItem{
+    constructor(name, releaseDate, pagesCount){
+        super(releaseDate, pagesCount);
+        this.name = name;
+        this.books = [];
+    }
+
+    addBook(book){
+            if(this.state > 30){
+            this.books.push(book)
+            }
+    }
+
+    findBookBy(type, value){
+        for(let i = 0; i < this.books.length; i++){
+            if (this.books[i][type] === value){
+                return this.books[i];
+            }      
+        }
+        return null;
+    }
+
+    giveBookByName(bookName){
+        for(let i = 0; i < this.books.length; i++){
+            if (this.books[i].name === bookName){
+                return this.books.splice(i, 1)[0];
+                
+            }      
+        }
+        return null;
+    
+
+    }
+}
+
+
+
+
+// задача 3
+
+class Student{
+    constructor(name){
+        this.name = name;
+        
+    }
+
+addMark(mark, subjectName){
+
+    if(mark < 1 || mark > 5) {
+        return console.log("Ошибка, оценка должна быть числом от 1 до 5");
+    } 
+
+    if (!this.marks[subjectName]) {
+        this.marks[subjectName] = [];
+    }
+
+    this.marks[subjectName].push(mark);
+      
+}
+    
+}    
+
+const student = new Student("Олег Никифоров");
+student.addMark(5, "algebra");
+student.addMark(5, "algebra");
+student.addMark(5, "geometry");
+student.addMark(4, "geometry");
+student.addMark(6, "geometry");
+
+
+
+// getAverage(){
+//     return this.avg = this.marks.reduce((a, b) => (a + b)) / this.marks.length; 
+// }
+
+// exclude(reason){
+//     delete this.subject;
+//     delete this.marks; 
+//     return this.excluded = reason;
+// }
+
+
+
+
+
+
 
