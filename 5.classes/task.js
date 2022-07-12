@@ -100,7 +100,6 @@ class Library extends PrintEditionItem{
             }      
         }
         return null;
-    
 
     }
 }
@@ -122,36 +121,45 @@ addMark(mark, subjectName){
         return console.log("Ошибка, оценка должна быть числом от 1 до 5");
     } 
 
-    if (!this.marks[subjectName]) {
+    if (!(this.marks[subjectName])) {
         this.marks[subjectName] = [];
     }
 
     this.marks[subjectName].push(mark);
       
 }
+
+getAverageBySubject(){
+    let sum = 0;
+    for(let subjectName in this.marks){
+        sum += this.getAverageBySubject(subjectName)
+    }
+    return sum / Object.keys(this.marks).length
+}
+
+getAverage(){
+    return this.marks.reduce((a, b) => (a + b)) / this.marks.length; 
+}
+
+exclude(reason){
+    delete this.subject;
+    delete this.marks; 
+    return this.excluded = reason;
+}
     
 }    
+
 
 const student = new Student("Олег Никифоров");
 student.addMark(5, "algebra");
 student.addMark(5, "algebra");
 student.addMark(5, "geometry");
 student.addMark(4, "geometry");
-student.addMark(6, "geometry");
-
-
-
-// getAverage(){
-//     return this.avg = this.marks.reduce((a, b) => (a + b)) / this.marks.length; 
-// }
-
-// exclude(reason){
-//     delete this.subject;
-//     delete this.marks; 
-//     return this.excluded = reason;
-// }
-
-
+student.addMark(6, "geometry"); // "Ошибка, оценка должна быть числом от 1 до 5"
+student.getAverageBySubject("geometry"); // Средний балл по предмету geometry 4.5
+student.getAverageBySubject("biology"); // Несуществующий предмет
+student.getAverage(); // Средний балл по всем предметам 4.75
+student.exclude("Исключен за попытку подделать оценки");
 
 
 
