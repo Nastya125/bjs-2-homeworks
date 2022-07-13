@@ -112,19 +112,22 @@ class Library extends PrintEditionItem{
 
 
 class Student{
-    constructor(name){
+    constructor(name, marks){
         
         this.name = name;
-        
+        this.marks = marks;
     }
 
 addMark(mark, subjectName){
-    this.marks = [];
+   
 
     if(mark < 1 || mark > 5) {
-        return console.log("Ошибка, оценка должна быть числом от 1 до 5");
+        return "Ошибка, оценка должна быть числом от 1 до 5";
     } 
     
+    if (this.marks === undefined){
+        this.marks = [];
+    }
 
     if (!(this.marks[subjectName])) {
         this.marks[subjectName] = [];
@@ -135,16 +138,20 @@ addMark(mark, subjectName){
     
 }
 
-getAverageBySubject(){
-    this.sum = 0;
-    for(let subjectName in this.marks){
-        this.sum += this._getAverageBySubject(subjectName);
+getAverageBySubject(subjectName){
+    if (this.marks[this.subjectName] === undefined){
+        return "Не существует";
+    } else {
+        let sum = this.marks[subjectName].reduce((a, b) => a + b, 0)
+        return sum / this.marks[subjectName].length;
     }
-    return this.sum / Object.keys(this.marks).length;
+
 }
 
 getAverage(){
-    return this.marks.reduce((a, b) => (a + b)) / this.marks.length; 
+    let sum = this.marks.reduce((a, b) => a + b, 0);
+    
+    return sum / this.marks.length; 
 }
 
 exclude(reason){
