@@ -116,6 +116,7 @@ class Student{
         
         this.name = name;
         this.marks = marks;
+       
     }
 
 addMark(mark, subjectName){
@@ -139,7 +140,7 @@ addMark(mark, subjectName){
 }
 
 getAverageBySubject(subjectName){
-    if (this.marks[this.subjectName] === undefined){
+    if (this.marks[subjectName] === undefined){
         return "Не существует";
     } else {
         let sum = this.marks[subjectName].reduce((a, b) => a + b, 0)
@@ -149,10 +150,16 @@ getAverageBySubject(subjectName){
 }
 
 getAverage(){
-    let sum = this.marks.reduce((a, b) => a + b, 0);
-    
-    return sum / this.marks.length; 
+    let sum = 0;
+    for (let value of Object.values(this.marks)){
+    sum = value.reduce((acc, item) => acc + item, 0) 
+} 
+console.log (sum)
+    return sum / Object.values(this.marks).length;
+   
 }
+  
+
 
 exclude(reason){
     delete this.subject;
@@ -169,10 +176,10 @@ student.addMark(5, "algebra");
 student.addMark(5, "geometry");
 student.addMark(4, "geometry");
 student.addMark(6, "geometry"); // "Ошибка, оценка должна быть числом от 1 до 5"
-console.log(student);
-student.getAverageBySubject("geometry"); // Средний балл по предмету geometry 4.5
+console.log(student );
+console.log (student.getAverageBySubject("geometry")); // Средний балл по предмету geometry 4.5
 student.getAverageBySubject("biology"); // Несуществующий предмет
- student.getAverage(); // Средний балл по всем предметам 4.75
+console.log (student.getAverage()) ; // Средний балл по всем предметам 4.75
  student.exclude("Исключен за попытку подделать оценки");
 
 
