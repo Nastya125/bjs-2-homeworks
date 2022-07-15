@@ -150,24 +150,37 @@ getAverageBySubject(subjectName){
 }
 
 getAverage(){
-    let sum = 0;
-    for (let value of Object.values(this.marks)){
-    sum = value.reduce((acc, item) => acc + item, 0) 
-} 
-console.log (sum)
-    return sum / Object.values(this.marks).length;
-   
-}
+    
+      let avgBySubject;
+      let arrOfAvg = [];
+      for(let subjectName in this.marks) {
+        avgBySubject = this.getAverageBySubject(subjectName);
+        arrOfAvg.push(avgBySubject);
+      }
+  
+      return arrOfAvg.reduce((acc, mark, idx, arr) => {
+        if (idx === arr.length - 1) {
+          return (acc + mark) / arr.length; 
+        } else {
+          return acc + mark;
+        }
+      })
+
+
+    } 
+  
+
   
 
 
-exclude(reason){
+exclude(reason) {
     delete this.subject;
     delete this.marks; 
     return this.excluded = reason;
 }
     
-}    
+}
+
 
 
 const student = new Student("Олег Никифоров");
