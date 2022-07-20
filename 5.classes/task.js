@@ -118,7 +118,7 @@ class Student{
         this.marks = marks;
        
     }
-
+    
 addMark(mark, subjectName){
    
 
