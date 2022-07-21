@@ -7,7 +7,6 @@ function parseCount(valueForParsing){
         throw new Error("Невалидное значение");
        
     } else {
-        console.log(result)
         return result;
     }
 }   
@@ -18,9 +17,7 @@ try{
     return parseCount(valueParsing);
 } catch (error){
     return error;
-} finally{
-    
-}
+  }
 }
 
 //task 2
@@ -42,9 +39,8 @@ class Triangle{
     }
 
     getArea(){
-        let p2
-        p2 = (this.a + this.b + this.c)*0.5;
-        var s = Math.sqrt(p2 * (p2 - this.a) * (p2 - this.b) * (p2 - this.c));
+        let halfPerimetr = this.getPerimeter() / 2;
+        var s = Math.sqrt(halfPerimetr * (halfPerimetr - this.a) * (halfPerimetr - this.b) * (halfPerimetr - this.c));
         return parseFloat(s.toFixed(3));
 
     }
@@ -67,12 +63,8 @@ function getTriangle(oneSize, twoSize, threeSize){
                 return "Ошибка! Треугольник не существует";
             }
         }
-        )
-        
-    } finally{
-        
-    }
-    
+        )    
+    }  
 }
 
 
