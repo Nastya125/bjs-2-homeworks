@@ -34,6 +34,10 @@ class AlarmClock {
 
     start(){
 
+        if(this.timerId){
+            return
+        }
+        
         function checkClock(alarm) {
                 
                 if(alarm.time === this.getCurrentFormattedTime()){
@@ -42,17 +46,16 @@ class AlarmClock {
 
                 checkClockBinded = checkClock.bind(this);
 
-                if(!this.timerId){
-                    this.timerId = setInterval(() => this.alarmCollection.forEach(e => checkClockBinded(e)) , 1000 );
-                }
-
         }
+
+        this.timerId = setInterval(() => this.alarmCollection.forEach(e => checkClockBinded(e)) , 1000 );
+        
     }
 
     stop(){
 
         if(this.timerId){
-            alarm.clearInterval(); 
+            clearInterval(this.timerId); 
             this.timerId = null; 
         }
 
