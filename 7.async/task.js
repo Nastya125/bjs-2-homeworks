@@ -44,10 +44,9 @@ class AlarmClock {
                     alarm.callback();
                 }
 
-                checkClockBinded = checkClock.bind(this);
-
         }
-
+        let checkClockBinded = checkClock.bind(this);
+        
         this.timerId = setInterval(() => this.alarmCollection.forEach(e => checkClockBinded(e)) , 1000 );
         
     }
